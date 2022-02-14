@@ -1,2 +1,13 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+	import Landing from '../components/landing.svelte';
+	import GlobalChat from '../components/global-chat.svelte';
+	import Cookies from 'js-cookie';
+
+	let aliasValue = Cookies.get('alias') || false;
+</script>
+
+{#if !aliasValue}
+	<Landing />
+{:else}
+	<GlobalChat />
+{/if}
