@@ -17,6 +17,6 @@ export const fetchChat = async () => {
     .subscribe();
 };
 
-export const sendMessage = async (message) => {
-    const {data, error} = await supabase.from(tableChat).insert([{message: message}])
+export const sendMessage = async (message, alias) => {
+    const {data, error} = await supabase.from(tableChat).insert([{message: message, alias: alias}])
 }

@@ -1,15 +1,18 @@
 <script context="module">
 	import GlobalMessage from '../components/global-message.svelte';
 	import { sendMessage } from '../stores/moonchat-store';
+	import Cookies from 'js-cookie';
 
 	let message, messageInput;
+	let aliasValue = Cookies.get('alias');
+
 	const handleSubmit = async () => {
-		await sendMessage(message);
+		await sendMessage(message, aliasValue);
 		messageInput.value = '';
 	};
 </script>
 
-<div class="h-full flex items-center flex-col pt-10 border-4">
+<div class="h-full flex items-center flex-col pt-10 border-4 border-accent">
 	<h1 class="text-6xl font-bold pb-10">Moonchat 👽</h1>
 	<div class=" rounded-lg p-6 w-full md:w-5/6 h-full overflow-y-scroll">
 		<GlobalMessage />
