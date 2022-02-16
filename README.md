@@ -6,8 +6,6 @@ Live chat app built with Svelte, Supabase and JS-Cookie.
 
 ## Installation
 
-Install my-project with npm
-
 ```bash
 npm init svelte@next
 npm init svelte@next my-app
