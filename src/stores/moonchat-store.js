@@ -5,7 +5,7 @@ export const globalChat = writable([])
 const tableChat = 'moonchat_global'
 
 export const fetchChat = async () => {
-    const { data, error } = await supabase.from(tableChat).select();
+    const { data, error } = await supabase.from(tableChat).select().order('id', {ascending: false}).limit(20);
     globalChat.set(data);
 
     const mySubscription = supabase

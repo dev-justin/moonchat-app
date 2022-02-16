@@ -7,17 +7,30 @@
 	let aliasValue = Cookies.get('alias');
 
 	const handleSubmit = async () => {
+		if (!message || !message.replace(/\s/g, '').length || message.length > 300) {
+			messageInput.value = '';
+			return;
+		}
 		await sendMessage(message, aliasValue);
 		messageInput.value = '';
 	};
 </script>
 
-<div class="h-full flex items-center flex-col pt-10 border-4 border-accent">
-	<h1 class="text-6xl font-bold pb-10">Moonchat 👽</h1>
-	<div class=" rounded-lg p-6 w-full md:w-5/6 h-full overflow-y-scroll">
+<p class="absolute -right-6 -top-6 bg-black text-green-600 rounded-full p-8 font-bold">
+	{aliasValue}
+</p>
+
+<div class="h-full flex items-center flex-col pt-10">
+	<h1 class="text-4xl font-bold pb-10 sm:text-6xl">Moonchat 👽</h1>
+	<div
+		class=" rounded-lg p-6 w-full md:w-5/6 h-full overflow-y-hidden break-all flex flex-col-reverse"
+	>
 		<GlobalMessage />
 	</div>
-	<form class="form-control w-full md:w-5/6 mb-10" on:submit|preventDefault={handleSubmit}>
+	<form
+		class="form-control w-11/12 mb-4 md:w-5/6 md:mb-10 md:border-2 md:mx-10 md:border-green-600 md:rounded-lg"
+		on:submit|preventDefault={handleSubmit}
+	>
 		<div class="relative">
 			<input
 				bind:value={message}
@@ -25,9 +38,9 @@
 				name="message"
 				type="text"
 				placeholder="Message..."
-				class="w-full pr-16 input input-bordered"
+				class="w-full pr-16 input input-bordered bg-black text-green-600"
 			/>
-			<button class="absolute top-0 right-0 rounded-l-none btn">Send 🚀🚀🚀</button>
+			<button class="absolute top-0 right-0 rounded-l-none btn hover:bg-green-600">Send 🚀</button>
 		</div>
 	</form>
 </div>

@@ -6,6 +6,6 @@
 	<title>Moonchat</title>
 </head:svelte>
 
-<main class=" bg-black h-[100vh]">
+<main class="h-[100vh] relative overflow-hidden">
 	<slot />
 </main>
