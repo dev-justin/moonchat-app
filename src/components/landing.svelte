@@ -1,26 +1,24 @@
 <script context="module">
-	import { checkUserExist, addUser, aliasCookie, userExists } from '../stores/user-store';
-	import { errorMessage, validateAlias } from '../stores/validation-store';
+	import {
+		checkUserExist,
+		addUser,
+		aliasCookie,
+		userExists,
+		errorMessage
+	} from '../stores/user-store';
 	import { fade } from 'svelte/transition';
 
 	let alias, aliasInput, userExist;
 
 	const handleSubmit = async () => {
-		if (validateAlias(alias)) {
+		userExist = await checkUserExist(alias);
+		if (!userExist) {
+			await addUser(alias);
+			aliasCookie(alias);
 			aliasInput.value = '';
-			userExists.set(true);
-			return;
+			location.reload();
 		} else {
-			userExist = await checkUserExist(alias);
-			if (!userExist) {
-				await addUser(alias);
-				aliasCookie(alias);
-				aliasInput.value = '';
-				location.reload();
-			} else {
-				errorMessage.set('Alias already in DB, please try another.');
-				aliasInput.value = '';
-			}
+			aliasInput.value = '';
 		}
 	};
 </script>
