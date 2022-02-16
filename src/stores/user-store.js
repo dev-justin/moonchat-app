@@ -1,7 +1,10 @@
 import { supabase } from "../supabase";
 import Cookies from "js-cookie";
+import { writable } from "svelte/store";
 
 const tableUser = 'users'
+
+export const userExists = writable()
 
 export const aliasCookie = async (alias) => {
     if (!Cookies.get('alias')) {
@@ -13,8 +16,10 @@ export const aliasCookie = async (alias) => {
 export const checkUserExist = async (alias) => {
     const { data, error } = await supabase.from(tableUser).select('alias').match({alias});
     if (data.length > 0) {
+        userExists.set(true)
         return true
     }
+    userExists.set(false)
     return false
 }
 

@@ -16,10 +16,6 @@
 	};
 </script>
 
-<p class="absolute -right-6 -top-6 bg-black text-green-600 rounded-full p-8 font-bold">
-	{aliasValue}
-</p>
-
 <div class="h-full flex items-center flex-col pt-10">
 	<h1 class="text-4xl font-bold pb-10 sm:text-6xl">Moonchat 👽</h1>
 	<div
@@ -38,7 +34,7 @@
 				name="message"
 				type="text"
 				placeholder="Message..."
-				class="w-full pr-16 input input-bordered bg-black text-green-600"
+				class="w-full pr-16 input input-bordered bg-black text-green-600 focus:shadow-none"
 			/>
 			<button class="absolute top-0 right-0 rounded-l-none btn hover:bg-green-600">Send 🚀</button>
 		</div>
