@@ -18,6 +18,7 @@
 				aliasInput.value = '';
 				location.reload();
 			} else {
+				errorMessage.set('Alias already in DB, please try another.');
 				aliasInput.value = '';
 			}
 		}
