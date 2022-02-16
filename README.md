@@ -1,7 +1,7 @@
 
 # Moonchat (Svelte + Supabase) 👽
 
-Live chat app built with **Svelte**, **Supabase**, **Tailwind** and **JS-Cookie**.
+Live chat app built with **Svelte**, **Supabase** and **Tailwind**.
 
 
 ## Installation
