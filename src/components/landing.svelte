@@ -1,17 +1,25 @@
 <script context="module">
 	import { checkUserExist, addUser, aliasCookie, userExists } from '../stores/user-store';
+	import { errorMessage, validateAlias } from '../stores/validation-store';
 	import { fade } from 'svelte/transition';
 
 	let alias, aliasInput, userExist;
+
 	const handleSubmit = async () => {
-		userExist = await checkUserExist(alias);
-		if (!userExist) {
-			await addUser(alias);
-			aliasCookie(alias);
+		if (validateAlias(alias)) {
 			aliasInput.value = '';
-			location.reload();
+			userExists.set(true);
+			return;
 		} else {
-			aliasInput.value = '';
+			userExist = await checkUserExist(alias);
+			if (!userExist) {
+				await addUser(alias);
+				aliasCookie(alias);
+				aliasInput.value = '';
+				location.reload();
+			} else {
+				aliasInput.value = '';
+			}
 		}
 	};
 </script>
@@ -33,7 +41,7 @@
 							d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
 						/></svg
 					>
-					<span>Alias already exists in DB. Please try another.</span>
+					<span>{$errorMessage}</span>
 				</div>
 			</div>
 		{/if}
